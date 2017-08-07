@@ -1,14 +1,18 @@
-package com.redarted.mormonistyka.game;
+package com.redarted.mormonistyka.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 
-public class ScreenInputHandler implements InputProcessor{
+public class ViewInputHandler implements InputProcessor{
 
-	private boolean isActive;
+	private World world;
 	
+	public ViewInputHandler(World world) {
+		this.world = world;
+	}
 	@Override
 	public boolean keyDown(int keycode) {
-		// TODO Auto-generated method stub
+		Gdx.app.log("ViewInputHandler", "key down");
 		return false;
 	}
 

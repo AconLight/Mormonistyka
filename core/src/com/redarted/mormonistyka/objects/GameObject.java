@@ -170,7 +170,7 @@ public class GameObject {
 		}
 		
 		public void updateLast(float delta, float vx, float vy) {
-
+			
 		}
 		
 		public GameObject getSuperParent() {

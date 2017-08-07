@@ -16,10 +16,12 @@ public class SpriteObject extends GameObject {
 	private float frameTime;
 	private float frameDt;
 	private boolean isPingPong;
+	private boolean isStopped;
+	private boolean isOnce; 
 	private boolean isLeft;
 	private float alfa;
-	private boolean isVisible;
-	
+	protected boolean isVisible;
+
 	public GameObject parent;
 	
 	public SpriteObject(float x, float y, GameObject parent, int id){
@@ -52,10 +54,12 @@ public class SpriteObject extends GameObject {
 	}
 	
 	public void updateFrames(float delta) { 
-		frameDt+=delta;
+		if(!isStopped) frameDt += delta;
+		
 		if(frameDt>frameTime){
-			if(isPingPong==true)
-			{
+			
+			if(isPingPong==true){
+				
 				if(isLeft == false )
 				{
 					frameNum++;
@@ -71,15 +75,22 @@ public class SpriteObject extends GameObject {
 					
 				
 			}
-			else
-			{
+			
+			else if(isOnce){
+				if(frameNum<regionList.size()-1)
+					frameNum++;
+				else
+					isStopped = true;
+			}
+			
+			else{
 				if(frameNum<regionList.size()-1)
 					frameNum++;
 				else
 					frameNum = 0;
 			}
 			
-			frameDt -=frameTime;
+			frameDt -= frameTime;
 			
 		}
 		
@@ -90,9 +101,26 @@ public class SpriteObject extends GameObject {
 		return this;
 	}
 	
+	public SpriteObject setIsOnce(boolean once) {
+		isOnce = once;
+		return this;
+	}
+	
 	public SpriteObject setFrameTime(float time) {
 		frameTime = time;
 		return this;
+	}
+	
+	public void setFrame(int num){
+		frameNum = num;
+	}
+	
+	public void setisStopped(boolean stop){
+		isStopped = stop;
+	}
+	
+	public void setisVisible(boolean visible){
+		isVisible = visible;
 	}
 	
 	public void render(SpriteBatch batch, int priority) {

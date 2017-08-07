@@ -5,8 +5,8 @@ import com.redarted.mormonistyka.screen.ScreenRenderer;
 
 public class GameScreen extends MyScreen{
 
-	public GameScreen(int width, int height) {
-		super(width, height);
+	public GameScreen(int width, int height, int priority) {
+		super(width, height, priority);
 		world = new GameWorld();
 		screenRenderer = new ScreenRenderer(world, camera);
 	}

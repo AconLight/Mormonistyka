@@ -1,22 +1,21 @@
 package com.redarted.mormonistyka.screen;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.redarted.mormonistyka.game.ScreenInputHandler;
 
 public class MyScreen implements Screen{
 	
-	private Viewport viewport;
+	protected ArrayList<MyView> myViews;
 	
-	private ScreenInputHandler screenInputHandler;
+	protected ScreenInputHandler screenInputHandler;
 	
 	private int priority;
 	
 	public static final int priorityRange = 5;
-
-	protected OrthographicCamera camera;
 	
 	protected ScreenRenderer screenRenderer;
 	
@@ -24,14 +23,14 @@ public class MyScreen implements Screen{
 	
 	public MyScreen(int width, int height, int priority) {
 		this.priority = priority;
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, width, height);
-		viewport = new ScreenViewport();
-		viewport.setWorldSize(width, height);
-		viewport.setCamera(camera);
-		viewport.setScreenSize(width, height);
+		myViews = new ArrayList<MyView>();
 		world = new World();
-		screenRenderer = new ScreenRenderer(world, camera);
+		screenRenderer = new ScreenRenderer(world, myViews);
+		screenInputHandler = new ScreenInputHandler(myViews);
+	}
+	
+	public ScreenInputHandler getScreenInputHandler() {
+		return screenInputHandler;
 	}
 	
 	public World getWorld() {
@@ -43,7 +42,7 @@ public class MyScreen implements Screen{
 	}
 
 	public OrthographicCamera getCamera() {
-		return camera;
+		return myViews.get(0).getCamera();
 	}
 
 	@Override

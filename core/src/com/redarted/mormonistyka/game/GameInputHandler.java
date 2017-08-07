@@ -1,60 +1,24 @@
 package com.redarted.mormonistyka.game;
 
-import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Gdx;
+import com.redarted.mormonistyka.screen.ViewInputHandler;
+import com.redarted.mormonistyka.screen.World;
 
-public class InputHandler implements InputProcessor{
+public class GameInputHandler extends ViewInputHandler{
 
-	private GameWorld world;
-	public InputHandler(GameWorld world) {
-		this.world = world;
+	public GameInputHandler(World world) {
+		super(world);
+		// TODO Auto-generated constructor stub
 	}
-	
 	@Override
 	public boolean keyDown(int keycode) {
-		
-		switch(keycode) {
-		case Keys.Q: {
-			
-			break;
-		}
-		case Keys.E: {
-			
-			break;
-		}
-		case Keys.A: {
-			
-			break;
-		}
-		case Keys.D: {
-			
-			break;
-		}
-		case Keys.SPACE: {
-			
-			break;
-		}
-		case Keys.F: {
-			
-			break;
-		}
-		}
+		Gdx.app.log("GameInputHandler", "key down");
 		return false;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
-
-		switch(keycode) {
-		case Keys.A: {
-			
-			break;
-		}
-		case Keys.D: {
-			
-			break;
-		}
-		}
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -66,7 +30,7 @@ public class InputHandler implements InputProcessor{
 
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		
+		// TODO Auto-generated method stub
 		return false;
 	}
 
